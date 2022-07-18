@@ -74,7 +74,39 @@
 </div>
 <script src="https://unpkg.com/jquery"></script>
 <script>
-  // Add your code here!
+
+  $('article img').attr('class','image-center');
+
+  $('article p:last-child').remove();
+
+  $('h1').css("font-size",Math.floor(Math.random()*101));
+
+  let newLi = $('<li>').text("Oh, the pup is in a cup!");
+  $('ol')
+    .append($('<li>')
+    .text("Oh, the pup is in a cup!"));
+
+  $('aside')
+    .empty()
+    .append('<p>')
+    .text("Sorry for that dumb list. Our bad.");
+
+  $('.mb-5').on('change','.form-control',function(evt) {
+    console.log('click on color form is firing');
+    let red = $('.form-control').eq(0).val();
+    let blue = $('.form-control').eq(1).val();
+    let green = $('.form-control').eq(2).val();
+    $('body').css('background-color',`rgb(${red},${green},${blue})`);
+    //debugger;
+  })
+
+  $('img').on('click', (evt) => {
+      //console.log('event listener on img');
+      //console.log(evt.target);
+      $(evt.target).remove();
+    });
+
+
 </script>
 </body>
 
