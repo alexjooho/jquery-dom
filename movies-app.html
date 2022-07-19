@@ -1,46 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
 </head>
+
 <body>
     <form class="form">
         <label for="movie-title">Movie title </label>
-        <input type="text" id="movie" placeholder="Type movie title here">
+        <input type="text" id="movie" minlength=2 placeholder="Type movie title here">
         <br>
         <label for="rating">Rating</label>
         <input type="number" id="rating" placeholder="1-5" min="1" max="5">
         <br>
         <button type="submit">Submit Form</button>
-
-
     </form>
+    <!-- <button id="sort-abc">Sort alphabetically</button>
+    <button id="sort-rating">Sort by Rating</button> -->
     <ul class="reviews">
     </ul>
 
     <script src="https://unpkg.com/jquery"></script>
     <script>
-
-        $('.form').on('submit', function(evt) {
-            evt.preventDefault(); // do we need to do this in jQuery style?
-            let $movieTitle = $('#movie').val();
-            let $rating = $('#rating').val();
-
-
+        "use strict";
+        $('.form').on('submit', function (evt) {
+            evt.preventDefault(); // there is no jQuery version for this
+            let movieTitle = $('#movie').val();  // these are not jQuery objects because you did val()! don't put $ before variable if not jQuery object
+            let rating = $('#rating').val();
 
             let $newLi = $('<li>')
-                .text(`I give ${$movieTitle} a rating of ${$rating}!!! `)
+                .html(`I give <i>${movieTitle}</i> a rating of ${rating}!!! `) 
                 .append($('<button>')
                     .text('X')
                     .addClass('remove-button'));
             $('.reviews').append($newLi);
         })
 
-        $('ul').on('click', '.remove-button', function(evt) {
+        $('ul').on('click', '.remove-button', function (evt) {
             $(evt.target).parent().remove();
         })
 
     </script>
 </body>
+
 </html>
